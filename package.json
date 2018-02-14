@@ -1,0 +1,25 @@
+{
+  "name": "express-jsonapi",
+  "version": "1.0.0",
+  "description": "Implementation of JSON-API for Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [
+    "json-api",
+    "json",
+    "api",
+    "express"
+  ],
+  "author": "Ángel Brasero",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.17.0"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "extend": "^3.0.1"
+  }
+}
