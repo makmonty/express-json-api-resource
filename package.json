@@ -1,5 +1,5 @@
 {
-  "name": "json-api-express",
+  "name": "express-json-api-resources",
   "version": "1.0.0",
   "description": "Implementation of JSON-API for Express",
   "homepage": "https://github.com/makmonty/json-api-express",
