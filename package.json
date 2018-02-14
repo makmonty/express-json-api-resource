@@ -2,6 +2,7 @@
   "name": "express-jsonapi",
   "version": "1.0.0",
   "description": "Implementation of JSON-API for Express",
+  "homepage": "https://github.com/makmonty/express-jsonapi",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
