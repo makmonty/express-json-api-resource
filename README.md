@@ -171,5 +171,8 @@ jsonApi.dbAdapters.mongoose = {
 
 ## TODO
 
-* Find out a way to add `links` to the objects
+* Find a way to add `links` to the objects
 * Improve documentation
+* Error handling
+* More configuration options
+* Accept POST requests without `attributes`

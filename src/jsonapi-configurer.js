@@ -29,7 +29,7 @@ module.exports = function JsonConfigurer(options) {
 
         if (options.send) {
           promise.then(function(obj) {
-            res.send(jsonApi.hydrateTopDocument(obj, null, req));
+            res.status(201).send(jsonApi.hydrateTopDocument(obj, null, req));
           });
         }
 
