@@ -9,13 +9,13 @@ Learn about the JSON-API specification here: [http://jsonapi.org/](http://jsonap
 * Install it
 
 ```shell
-npm install --save expressjs-json-api
+npm install --save express-json-api-resource
 ```
 
 * Require it and use it in different ways. The `jsonApi` function accepts an options object. See further down the available options:
 
 ```javascript
-var jsonApi = require('expressjs-json-api');
+var jsonApi = require('express-json-api-resource');
 var User = require('./models/user');
 ```
 
@@ -27,7 +27,7 @@ app.use('/user', jsonApi({model: User}));
 2. You can tell it to implement only some of the endpoints
 ```javascript
 var router = require('express').Router({mergeParams: true});
-var jsonApiUser = require('expressjs-json-api')({model: User});
+var jsonApiUser = require('express-json-api-resource')({model: User});
 
 router.route('/user')
 
@@ -107,7 +107,7 @@ preSendObjectParser: function(obj) {
 Currently we only support Mongoose, but you can write your own database adapter. Just write the methods needed. Here's the Mongoose implementation as an example. Remember that every function should return a `Promise` except `getId`.
 
 ```javascript
-var jsonApi = require('expressjs-json-api');
+var jsonApi = require('express-json-api-resource');
 
 jsonApi.dbAdapters.mongoose = {
   getList: function(options, req) {

@@ -1,8 +1,8 @@
 {
-  "name": "express-json-api-resources",
-  "version": "1.0.0",
+  "name": "express-json-api-resource",
+  "version": "1.0.2",
   "description": "Implementation of JSON-API for Express",
-  "homepage": "https://github.com/makmonty/json-api-express",
+  "homepage": "https://github.com/makmonty/express-json-api-resource",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
