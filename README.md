@@ -125,7 +125,7 @@ jsonApi.dbAdapters.mongoose = {
   },
 
   post: function(options, req) {
-    var m = extend({}, req.body);
+    var m = extend({}, req.body.data.attributes);
 
     return options.model
       .create(m)
@@ -142,7 +142,7 @@ jsonApi.dbAdapters.mongoose = {
       .findById(req.params.id)
       .exec()
       .then(function(obj) {
-        extend(obj, req.body);
+        extend(obj, req.body.data.attributes);
 
         return obj
           .save()
@@ -153,6 +153,10 @@ jsonApi.dbAdapters.mongoose = {
               });
           });
       });
+  },
+
+  put: function(options, req) {
+    return this.patch(options, req);
   },
 
   delete: function(options, req) {
@@ -167,6 +171,8 @@ jsonApi.dbAdapters.mongoose = {
   getId: function(obj) {
     return obj._id;
   }
+};
+
 ```
 
 ## TODO
