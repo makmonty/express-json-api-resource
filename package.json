@@ -4,10 +4,6 @@
   "description": "Implementation of JSON-API for Express",
   "homepage": "https://github.com/makmonty/express-json-api-resource",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
-  },
   "keywords": [
     "json-api",
     "json",
