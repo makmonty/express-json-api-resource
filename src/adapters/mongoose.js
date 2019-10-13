@@ -1,5 +1,3 @@
-const extend = require('extend');
-
 module.exports = {
   getList: function(options, req) {
     return options.model
@@ -16,7 +14,7 @@ module.exports = {
   },
 
   post: function(options, req) {
-    var m = extend({}, req.body.data.attributes);
+    var m = Object.assign({}, req.body.data.attributes);
 
     return options.model
       .create(m)
@@ -33,7 +31,7 @@ module.exports = {
       .findById(req.params.id)
       .exec()
       .then(function(obj) {
-        extend(obj, req.body.data.attributes);
+        Object.assign(obj, req.body.data.attributes);
 
         return obj
           .save()

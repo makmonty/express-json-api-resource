@@ -1,4 +1,3 @@
-const extend = require('extend');
 const adapters = require('./adapters');
 
 module.exports = function JsonConfigurer(options) {
@@ -15,14 +14,14 @@ module.exports = function JsonConfigurer(options) {
     catch: true
   };
 
-  var commonOptions = extend({}, defaults, options);
+  var commonOptions = Object.assign({}, defaults, options);
 
   var Model = options.model;
   var dbAdapter = adapters[commonOptions.dbAdapter];
 
   var methodWrapper = function(fn) {
     return function(options) {
-      options = extend({}, commonOptions, options);
+      options = Object.assign({}, commonOptions, options);
 
       return function(req, res, next) {
         var promise = fn(options, req);

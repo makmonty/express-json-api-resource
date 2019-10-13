@@ -17,10 +17,9 @@
   "author": "Ángel Brasero",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^5.16.0"
+    "eslint": "^6.5.1"
   },
   "dependencies": {
-    "express": "^4.16.2",
-    "extend": "^3.0.1"
+    "express": "^4.16.2"
   }
 }

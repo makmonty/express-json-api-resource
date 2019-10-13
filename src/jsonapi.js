@@ -1,4 +1,3 @@
-const extend = require('extend');
 const JsonApiConfigurer = require('./jsonapi-configurer');
 const express = require('express');
 const adapters = require('./adapters');
@@ -27,7 +26,7 @@ let JsonApi = function(options) {
   .delete(configurer.methods.delete())
   ;
 
-  extend(router, configurer);
+  Object.assign(router, configurer);
 
   return router;
 };
