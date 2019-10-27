@@ -3,6 +3,7 @@ module.exports = {
     return options.model
       .find(req.query.filter)
       .populate(options.populate)
+      .lean()
       .exec();
   },
 
@@ -10,6 +11,7 @@ module.exports = {
     return options.model
       .findById(req.params.id)
       .populate(options.populate)
+      .lean()
       .exec();
   },
 
@@ -23,6 +25,9 @@ module.exports = {
           .populate(obj, {
             path: options.populate
           });
+      })
+      .then(function(obj) {
+        return obj.toObject();
       });
   },
 
@@ -40,6 +45,9 @@ module.exports = {
               .populate(newObj, {
                 path: options.populate
               });
+          })
+          .then(function(obj) {
+            return obj.toObject();
           });
       });
   },

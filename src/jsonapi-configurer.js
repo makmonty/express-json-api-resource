@@ -89,9 +89,9 @@ module.exports = function JsonConfigurer(options) {
     return obj ? {
       id: adapters[commonOptions.dbAdapter].getId(obj),
       type: commonOptions.model.modelName.toLowerCase(),
-      attributes: commonOptions.preSendObjectParser ?
-        commonOptions.preSendObjectParser(obj.toObject()) :
-        obj.toObject()
+      attributes: commonOptions.parseObject ?
+        commonOptions.parseObject(obj) :
+        obj
     } :
     null;
   };

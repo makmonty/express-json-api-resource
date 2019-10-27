@@ -79,14 +79,14 @@ Type: `Boolean`
 
 Description: *Default: `true`*. Should the errors be catched?
 
-### preSendObjectParser
+### parseObject
 Type: `function`
 
 Description: A function to parse each object before it is sent to the client.
 
 Example:
 ```javascript
-preSendObjectParser: function(obj) {
+parseObject: function(obj) {
   delete obj.password;
   return obj;
 }

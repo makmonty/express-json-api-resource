@@ -8,23 +8,22 @@ const adapters = require('./adapters');
 // populate: String
 // send: Boolean
 // catch: Boolean
-// preSendObjectParser: Function
+// parseRequest: Function
+// parseObject: Function
 
 let JsonApi = function(options) {
   const router = express.Router({mergeParams: true});
   const configurer = new JsonApiConfigurer(options);
 
   router.route('/')
-  .get(configurer.methods.getList())
-  .post(configurer.methods.post())
-  ;
+    .get(configurer.methods.getList())
+    .post(configurer.methods.post());
 
   router.route('/:id')
-  .get(configurer.methods.get())
-  .put(configurer.methods.put())
-  .patch(configurer.methods.patch())
-  .delete(configurer.methods.delete())
-  ;
+    .get(configurer.methods.get())
+    .put(configurer.methods.put())
+    .patch(configurer.methods.patch())
+    .delete(configurer.methods.delete());
 
   Object.assign(router, configurer);
 
