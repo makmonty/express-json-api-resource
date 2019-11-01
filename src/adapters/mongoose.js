@@ -1,6 +1,5 @@
 module.exports = {
   getList: function(options, req) {
-    console.log(req.query);
     let query = options.model
       .find(req.query.filter)
       .populate(options.populate);
