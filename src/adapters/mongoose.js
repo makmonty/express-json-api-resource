@@ -1,8 +1,28 @@
 module.exports = {
   getList: function(options, req) {
-    return options.model
+    console.log(req.query);
+    let query = options.model
       .find(req.query.filter)
-      .populate(options.populate)
+      .populate(options.populate);
+
+    if (req.query.sort) {
+      const fields = req.query.sort.split(',');
+      const sort = {};
+      fields.forEach(field => {
+        const order = field.charAt(0) === '-' ? -1 : 1;
+        field = order === 1 ? field : field.substr(1);
+        sort[field] = order;
+      });
+      query = query.sort(sort);
+    }
+
+    if (req.query.page) {
+      const limit = req.query.page.limit || req.query.page.size;
+      const offset = req.query.page.offset || (req.query.page.number - 1) * limit;
+      query = query.limit(parseInt(limit, 10)).skip(parseInt(offset, 10));
+    }
+
+    return query
       .lean()
       .exec();
   },
