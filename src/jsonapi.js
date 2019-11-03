@@ -8,8 +8,8 @@ const adapters = require('./adapters');
 // populate: String
 // send: Boolean
 // catch: Boolean
-// parseRequest: Function
 // parseObject: Function
+// parseQuery: Function
 
 let JsonApi = function(options) {
   const router = express.Router({mergeParams: true});

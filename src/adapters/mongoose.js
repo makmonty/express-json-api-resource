@@ -21,15 +21,25 @@ module.exports = {
       query = query.limit(parseInt(limit, 10)).skip(parseInt(offset, 10));
     }
 
+    if (options.parseQuery) {
+      query = options.parseQuery(query, req);
+    }
+
     return query
       .lean()
       .exec();
   },
 
   get: function(options, req) {
-    return options.model
+    let query = options.model
       .findById(req.params.id)
-      .populate(options.populate)
+      .populate(options.populate);
+
+    if (options.parseQuery) {
+      query = options.parseQuery(query, req);
+    }
+
+    return query
       .lean()
       .exec();
   },
