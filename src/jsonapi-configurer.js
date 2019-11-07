@@ -1,30 +1,29 @@
 const adapters = require('./adapters');
 
 module.exports = function JsonConfigurer(options) {
-  var jsonApi = this;
+  const jsonApi = this;
 
   if (!options.model) {
     throw new Error('Model must be set');
   }
 
-  var defaults = {
+  const defaults = {
     dbAdapter: 'mongoose',
     populate: '',
     send: true,
     catch: true
   };
 
-  var commonOptions = Object.assign({}, defaults, options);
+  const commonOptions = Object.assign({}, defaults, options);
 
-  var Model = options.model;
-  var dbAdapter = adapters[commonOptions.dbAdapter];
+  const dbAdapter = adapters[commonOptions.dbAdapter];
 
-  var methodWrapper = function(fn) {
+  const methodWrapper = function(fn) {
     return function(options) {
       options = Object.assign({}, commonOptions, options);
 
       return function(req, res, next) {
-        var promise = fn(options, req);
+        const promise = fn(options, req);
 
         if (options.send) {
           promise.then(function(obj) {
@@ -60,7 +59,7 @@ module.exports = function JsonConfigurer(options) {
   // Creates a JSON API top level document
   // http://jsonapi.org/format/#document-top-level
   this.hydrateTopDocument = function(data, err, req) {
-    var doc = {};
+    const doc = {};
 
     doc.links = {
       self: req.protocol + '://' + req.get('host') + req.originalUrl

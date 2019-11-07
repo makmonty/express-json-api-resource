@@ -1,8 +1,17 @@
 module.exports = {
   getList: function(options, req) {
     let query = options.model
-      .find(req.query.filter)
-      .populate(options.populate);
+      .find(req.query.filter);
+
+    if (options.populate) {
+      const populate = Array.isArray(options.populate) ?
+        options.populate :
+        [options.populate];
+      populate.forEach(pop => {
+        pop = Array.isArray(pop) ? pop : [pop];
+        query = query.populate(...pop);
+      });
+    }
 
     if (req.query.sort) {
       const fields = req.query.sort.split(',');
