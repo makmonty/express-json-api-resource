@@ -53,15 +53,13 @@ const get = function(options, req) {
 };
 
 const post = function(options, req) {
-  var m = Object.assign({}, req.body.data.attributes);
+  const m = Object.assign({}, req.body.data.attributes);
 
   return options.model
     .create(m)
     .then(function(obj) {
       return options.model
-        .populate(obj, {
-          path: options.populate
-        });
+        .populate(obj, buildPopulateOpts(options.populate));
     })
     .then(function(obj) {
       return obj.toObject();
@@ -79,9 +77,7 @@ const patch = function(options, req) {
         .save()
         .then(function(newObj) {
           return options.model
-            .populate(newObj, {
-              path: options.populate
-            });
+            .populate(newObj, buildPopulateOpts(options.populate));
         })
         .then(function(obj) {
           return obj.toObject();
@@ -104,6 +100,14 @@ const remove = function(options, req) {
 
 const getId = function(obj) {
   return obj._id;
+};
+
+const buildPopulateOpts = function(populate) {
+  populate = Array.isArray(populate) ? populate : [populate];
+  return populate.map(pop => {
+    pop = Array.isArray(pop) ? pop : [pop];
+    return {path: pop[0], select: pop[1]};
+  });
 };
 
 module.exports = {

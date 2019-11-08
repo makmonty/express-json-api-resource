@@ -34,6 +34,7 @@ module.exports = function JsonConfigurer(options) {
         if (options.catch) {
           promise.catch(function(err) {
             if (options.send) {
+              err.status = err.status || 500;
               res.status(err.status);
               res.send(jsonApi.hydrateTopDocument(null, err, req));
             } else {
@@ -70,7 +71,7 @@ module.exports = function JsonConfigurer(options) {
     }
 
     if (err) {
-      doc.errors = jsonApi.hydrateErrors(err, req);
+      doc.errors = jsonApi.hydrateErrors([err], req);
     }
 
     return doc;
@@ -96,7 +97,15 @@ module.exports = function JsonConfigurer(options) {
   };
 
   this.hydrateErrors = function(errors, req) {
-    // TODO
-    return errors;
+    return errors.map(error => this.hydrateError(error, req));
+  };
+
+  this.hydrateError = function(error, req) {
+    return {
+      status: error.status,
+      title: error.message,
+      detail: error.description,
+      meta: error.meta
+    };
   };
 };
